@@ -1,0 +1,93 @@
+- ภาษา JavaScript มัน Base On Functional Programming
+
+- Imperative programming = การสั่งให้คอมพิวเตอร์ “ทำตามขั้นตอนแบบ 
+step-by-step” (How)
+
+- Declarative = บอกว่าอยากได้ผลลัพธ์อะไร แต่ไม่ต้องระบุทุกขั้นตอน (What)
+
+- Callback function คือ ฟังก์ชันที่ถูกส่งไปเป็นอาร์กิวเมนต์ให้กับฟังก์ชันอีกตัวหนึ่งแล้วฟังก์ชันนั้นจะ “เรียกกลับ” (call back) ฟังก์ชันที่ส่งไป เมื่อถึงเวลาที่เหมาะสม เช่น หลังจากเสร็จงาน, เมื่อมี event เกิดขึ้น, หรือเมื่อมีผลลัพธ์พร้อมใช้งาน
+
+Example Callback Function : 
+function greet(name, callback) {
+  console.log("Hello " + name);
+  callback();  // เรียกฟังก์ชันที่ส่งเข้ามา
+}
+
+function afterGreeting() {
+  console.log("Nice to meet you!");
+}
+
+greet("Bank", afterGreeting);
+
+- Higher Order Function คือ Function ที่รับ Parameter เป็น  Function [หรือ] Return Function กลับออกไป
+
+
+Functional Programming คือ Function เป็น 1.First Class Citizen คือ 
+1.1. การมอบค่าให้กับตัวแปลได้
+1.2. ส่งไปเป็น Parameter ได้ (Callback Function) ex. filter , map --> Higher Order Function
+2."Avoids changing State and Mutable data" คือการออกแบบ function ที่ไม่เปลี่ยน original data ไม่งั้นมันจะเกิด side effect กับ function อื่น
+
+Pure Function คือ Input เดียวกัน ต้องได้ Output แบบเดิมเสมอ / ไม่แตะ variable นอก scope ตัวเอง (Global variable)
+- ตัวแปรภายใน Function คือ 
+1. Parameter คือตัวแปรมันจะถูกทำลายเมื่อ Function จบลง
+2. ตัวแปรที่สร้างขึ้นใหม่ใน Function นั้น (local variable)
+
+
+
+
+(pure)
+function pureFunc(arg){
+  let z = 2
+  arg = arg * z + 1
+  return arg
+}
+
+console.log(pureFunc(data.value)) // 21
+console.log(pureFunc(data.value)) // 21
+
+ฟังก์ชันรับค่าจำนวน (data.value) แล้วคำนวณออกมาโดย ไม่แก้แปลงค่าใน data → ผลลัพธ์ทุกครั้งเหมือนกัน (21, 21)
+
+เรียก pureFunc(data.value) → ส่งค่าเป็น number 10 (primitive) เข้าไป (ค่า ถูก copy เข้า parameter arg)
+
+ภายในฟังก์ชัน: arg = 10 * 2 + 1 = 21 → return 21
+
+สำคัญ: ฟังก์ชันไม่ได้แก้ data เลย ดังนั้น data.value ยังเป็น 10 อยู่ การเรียกซ้ำยังได้ 21 เสมอ ⇒ deterministic
+
+
+
+
+(impure)
+function impureFunc2(arg){
+  let z = 2
+  arg.value = arg.value * z + 1
+  return arg.value
+}
+
+console.log(impureFunc2(data)) // 21
+console.log(impureFunc2(data)) // 43
+
+ฟังก์ชันรับ object (data) แล้ว แก้ไข property ภายใน object (arg.value = ...) → ค่าของ data ถูกเปลี่ยนไป ทำให้การเรียกครั้งถัดไปให้ผลต่างกัน (21, 43)
+
+เรียก impureFunc2(data) → ส่ง object data เข้าไปเป็น reference (ไม่ได้ copy ค่า)
+
+ครั้งแรก: arg.value = 10 * 2 + 1 = 21 → แก้ไข data.value ให้เป็น 21 → return 21
+
+ครั้งที่สอง: ตอนนี้ data.value เป็น 21 อยู่แล้ว → arg.value = 21 * 2 + 1 = 43 → data.value ถูกเปลี่ยนเป็น 43 → return 43
+
+ผลคือ output เป็น 21 แล้ว 43 เพราะฟังก์ชันมี side effect (เปลี่ยน state ภายนอก)
+
+
+
+
+Function Composition คือการเอาหลายๆ function มาประกอบกัน
+
+Function Type
+- Anonymous Function
+- Name Function
+- Inner Function (nested)
+    nested function ไม่สามารถถูกเรียกผ่าน นอก scope ของ outer function ไม่ได้
+    มีแค่ outer ที่สามารถเรียกใช้ nested ได้
+
+- Closure function   
+    1.ต้องเป็น nested function
+    2.ฟังก์ชันที่จำค่าของตัวแปรจากscope ภายนอกไว้ได้

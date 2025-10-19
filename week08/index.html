@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Manipulating Elements</title>
+</head>
+
+<body>
+  <h3>SIT@KMUTT Restaurant</h3>
+  <div class="menu">
+    <ul id="appetizer">
+      <li class="vegan">Vegetable Rolls</li>
+      <!-- out of stock -->
+      <li class="meat">Chicken Wings</li>
+      <li class="meat">Tuna Sandwich</li>
+    </ul>
+    <ul id="soup">
+      <li class="meat">Spicy Bacon-Corn Soup</li>
+      <li class="vegan">Vegetable Soup</li>
+      <li class="meat">Beef Soup</li>
+      <li class="vegan">Coconut Soup</li>
+    </ul>
+    <form action="/action_page.php" method="get" name="myForm">
+      First name: <input type="text" name="fname" />
+
+      Last name: <input type="text" name="lname" />
+
+      <input type="button" onclick="formSubmit()" value="Send form data!" />
+    </form>
+  </div>
+  <p>***Enjoy Your Meal, Thank you***</p>
+  <script src="./week08.js"></script>
+</body>
+
+</html>

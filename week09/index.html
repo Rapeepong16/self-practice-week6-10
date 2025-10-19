@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Demo: JS Events, Propagation, Observer, Dialogs</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      padding: 20px;
+      line-height: 1.5;
+    }
+
+    .box {
+      padding: 12px;
+      border-radius: 8px;
+      margin: 8px 0;
+    }
+
+    .outer {
+      background: #fde68a;
+    }
+
+    .inner {
+      background: #bbf7d0;
+      margin: 12px;
+      padding: 12px;
+    }
+
+    .target {
+      background: #bfdbfe;
+      padding: 8px 12px;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+
+    pre {
+      background: #111;
+      color: #dff;
+      padding: 10px;
+      border-radius: 6px;
+      overflow: auto;
+    }
+
+    button {
+      padding: .4rem .7rem;
+      cursor: pointer;
+    }
+
+    .log {
+      white-space: pre-wrap;
+      background: #f3f4f6;
+      padding: 8px;
+      border-radius: 6px;
+      min-height: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>ทดลอง Event (Click / Propagation / Observer / Dialog)</h1>
+
+  <p>เปิด DevTools (F12) ดู console.log ขณะเล่น — โค้ดมีคอมเมนต์ภาษาไทยให้เข้าใจ</p>
+
+  <section>
+    <h2>1) Event Propagation (Capturing / Target / Bubbling)</h2>
+    <div class="box outer" id="outer"><strong>outer (div)</strong>
+      <div class="inner" id="inner"><strong>inner (div)</strong>
+        <div class="target" id="target">target (click me)</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <label><input type="radio" name="phase" value="bubble" checked /> Bubble (default)</label>
+      <label><input type="radio" name="phase" value="capture" /> Capture</label>
+    </div>
+
+    <div>
+      <button id="clearLog">Clear log</button>
+      <div class="log" id="logArea"></div>
+    </div>
+  </section>
+
+  <hr />
+
+  <section>
+    <h2>2) addEventListener / removeEventListener (ต้องอ้างอิงฟังก์ชันไม่ใช่ anonymous)</h2>
+    <div class="controls">
+      <button id="addListener">Add listener to target</button>
+      <button id="removeListener">Remove that listener</button>
+      <button id="clickProgrammatically">Programmatic click</button>
+    </div>
+    <p>ดูตัวอย่างการลบ listener ที่ต้องใช้ reference เดิม</p>
+  </section>
+
+  <hr />
+
+  <section>
+    <h2>3) Multiple listeners (Observer-like)</h2>
+    <div class="controls">
+      <button id="subscribeA">Subscribe A</button>
+      <button id="subscribeB">Subscribe B</button>
+      <button id="notifySubs">Notify subscribers</button>
+      <button id="clearSubs">Clear subscribers</button>
+    </div>
+    <div>Subscribers log: <div id="subsLog" class="log"></div>
+    </div>
+  </section>
+
+  <hr />
+
+  <section>
+    <h2>4) Dialogs: prompt / confirm / alert</h2>
+    <div class="controls">
+      <button id="demoPrompt">prompt()</button>
+      <button id="demoConfirm">confirm()</button>
+      <button id="demoAlert">alert()</button>
+      <button id="demoFlow">Combined flow</button>
+    </div>
+  </section>
+
+  <hr />
+
+  <section>
+    <h2>5) Optional chaining & Debugging</h2>
+    <pre>
+// ตัวอย่าง optional chaining: ป้องกัน error ถ้าตัวแปรเป็น null/undefined
+const maybe = null;
+console.log('optional chaining =>', maybe?.property?.toString()); // ไม่ throw
+    </pre>
+    <div class="controls">
+      <button id="runOptional">Run optional chaining example</button>
+      <button id="debugExample">Debugging example (console.log)</button>
+    </div>
+  </section>
+
+  <script src="main.js">
+
+  </script>
+</body>
+
+</html>

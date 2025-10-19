@@ -1,0 +1,19 @@
+โครงสร้าง DOM Tree
+-แต่ละ element ใน HTML ถูกมองเป็น “node” (โหนด)
+-ความสัมพันธ์ระหว่างโหนดมี:
+  -parent (โหนดแม่)
+  -child (โหนดลูก)
+  -sibling (พี่น้องข้างเคียง)
+
+-ใช้การเดินทาง ในต้นไม้ด้วย property เช่น
+parentElement, firstElementChild, nextElementSibling, previousElementSibling
+
+DOM Traversal (การเดินทางระหว่างโหนด)
+
+ใช้ property พิเศษในการเคลื่อนที่ภายใน tree
+  -firstElementChild → ลูกคนแรก
+  -lastElementChild → ลูกคนสุดท้าย
+  -nextElementSibling → ไปโหนดถัดไป (ทางขวา)
+  -previousElementSibling → ไปโหนดก่อนหน้า (ทางซ้าย)
+  -children → ลูกทั้งหมด (HTMLCollection)
+  -parentElement → ขึ้นไปหาแม่

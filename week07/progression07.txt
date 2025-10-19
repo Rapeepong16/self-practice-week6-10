@@ -1,0 +1,79 @@
+Document Object Model(DOM)
+DOM represents a document as a hierarchical tree of node
+
+- ส่วนใหญ่เรา แนบ <Script></Script> ตรง tag head มันอาจจะมีปัญหา ตรงที่ว่ามันจะโหลด JavaScript มาประมวลผลก่อนที่จะ render page html
+
+- เราจึงย้ายส่วนตรงนั้นมาไว้ก่อน tag ปิด html เพราะบางกรณีมันโหลด JS นาน ทำให้หน้า web มัน blank
+
+หลังจากการโหลด document html จะถูก document object มองว่าเป็น node
+root node = HTML document
+other node = text node , element node , attribute node , comment node
+
+<p style = 'color:red' id='123'> Sample Text </p>
+|_______________________________________|______|
+                      |                 |      
+                element node            |  
+                                     Text node
+style , id = attribute node 
+<!-- comment text --> = comment node
+white space ที่อยู่ระหว่าง tag = text node
+
+example :
+
+<!DOCTYPE html>
+<html>
+  <head> DOM Document </head>
+  <body>
+    <div id='123'>
+      <p> "H1" </p>
+      <p> "H2" </p>
+    </div>
+    <div> "H3" </div>
+  </body>
+</html>
+
+
+DOM Tree Structure :
+
+document
+└── html
+      ├── head
+      │     └── "DOM Document"
+      └── body
+            ├── div (id='123')
+            │     ├── p
+            │     │     └── "H1"
+            │     └── p
+            │           └── "H2"
+            └── div
+                  └── "H3"
+้html = root element มันคือ element เเรกของเอกสาร
+<!DOCTYPE html> = DOCTYPE node
+
+
+root element != root node
+root node = document (logical node)
+ความสัมพันธ์
+parent / child / sibling / ancestor / descendant
+
+1. Root Node
+- คือ โหนดสูงสุดสุดของเอกสาร (the very top of the DOM tree)
+- ในเบราว์เซอร์ มันคือ document object
+- ทุก element, attribute, และ text node ในหน้าเว็บจะอยู่ใต้ document - นี้ทั้งหมด
+
+2. Root Element
+-คือ element ตัวแรกสุดภายใน document
+-ใน HTML เอกสารปกติ ตัวนี้คือ <html>
+-เป็น element สูงสุดในเอกสาร HTML (อยู่ใต้ document อีกที)
+
+
+
+NodeList คือ “คอลเลกชันของ Node หลายตัว”
+ที่ JavaScript คืนกลับมาเมื่อเราดึง element จาก DOM ด้วยคำสั่งบางอย่าง ใช้งานเหมือน array ได้บางส่วน แต่ไม่ใช่ array จริง ๆ
+
+Attribute ไม่ใช่ Node 
+
+innerHTML, textContent, และ innerText
+🧩 innerHTML → เอา “ทั้งโค้ด HTML” ข้างใน
+🧱 textContent → เอา “ข้อความดิบทั้งหมด”
+👁️ innerText → เอา “ข้อความที่มองเห็นได้จริง”

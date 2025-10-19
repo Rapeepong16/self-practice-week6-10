@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ตั้งค่าหน้าเว็บ (localStorage)</title>
+  <style>
+    body {
+      margin: 1.5rem;
+      transition: background-color .2s, color .2s, font-size .2s;
+    }
+
+    .controls {
+      max-width: 520px;
+      display: grid;
+      gap: .6rem;
+    }
+
+    label {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+    }
+
+    .preview {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, .08);
+    }
+
+    .row {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+    }
+
+    button {
+      padding: .5rem .8rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>ตั้งค่าหน้าเว็บ</h2>
+
+  <div class="controls">
+    <label>
+      Background color:
+      <input id="bgColor" type="color" value="#ffffff" />
+    </label>
+
+    <label>
+      Font color:
+      <input id="fontColor" type="color" value="#111111" />
+    </label>
+
+    <label class="row">
+      Font size:
+      <select id="fontSize">
+        <option value="small">Small</option>
+        <option value="medium" selected>Medium</option>
+        <option value="large">Large</option>
+      </select>
+      <span style="margin-left:auto; font-size:.9rem; color:#666;">(ปรับ preview ด้านล่าง)</span>
+    </label>
+
+    <div class="row">
+      <button id="saveBtn">Save</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+
+    <div class="preview" id="preview">
+      <p><strong>ตัวอย่างข้อความ</strong></p>
+      <p>นี่คือพื้นที่ตัวอย่าง — ข้อความนี้จะเปลี่ยนสีและขนาดตามการตั้งค่า</p>
+    </div>
+  </div>
+
+  <script src="./practice.js">
+  </script>
+</body>
+
+</html>

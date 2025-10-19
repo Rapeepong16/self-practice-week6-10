@@ -1,0 +1,27 @@
+Event และ DOM (Document Object Model)
+-หน้าเว็บ (HTML) ถูกมองเป็น โครงสร้างต้นไม้ของ Node
+-แต่ละ Node (เช่น div, button, input) สามารถผูก “เหตุการณ์” (Event) ไว้ได้
+-Event คือ “สิ่งที่เกิดขึ้นบนหน้าเว็บ” เช่น คลิกเมาส์, พิมพ์คีย์บอร์ด, โหลดหน้าเสร็จ ฯลฯ
+
+ประเภทหลักของ Event
+-Application Events – เกิดตามสถานะของแอป เช่น DOMContentLoaded, load
+-User Interaction Events – เกิดจากการกระทำของผู้ใช้ เช่น click, mouseover, keydown
+
+Event Propagation 
+เมื่อเหตุการณ์เกิดขึ้นใน DOM มันจะ “ไหล” ผ่าน Node ต่าง ๆ ตามลำดับ 3 ช่วง คือ
+
+-Capturing Phase – ไหลจาก root node (บนสุด) --> ลงมาหาจุดเกิดเหตุ
+-Target Phase – ถึงจุดที่เกิดเหตุการณ์จริง
+-Bubbling Phase – ไหลย้อนจากจุดเกิดเหตุ --> กลับขึ้นไปหา root node
+
+ค่าเริ่มต้นของ event ใน JavaScript จะอยู่ใน bubbling phase
+ถ้าต้องการเปลี่ยนเป็น capturing ต้องใส่พารามิเตอร์ตัวที่ 3 ของ addEventListener() ให้เป็น true
+
+Observer Pattern
+- เชื่อมโยงกับ Design Pattern โดยอธิบายว่า “Event Handling” ทำงานคล้ายกับ Observer Pattern
+
+  -มี Publisher (Subject) -> สิ่งที่ส่งสัญญาณเหตุการณ์
+  -มี Subscribers (Observers) -> สิ่งที่เฝ้าติดตามและตอบสนองเมื่อเกิดเหตุการณ์
+
+- ใช้แนวคิดเดียวกับระบบ subscribe/notify เช่น YouTube หรือ notifications
+
