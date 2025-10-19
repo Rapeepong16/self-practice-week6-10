@@ -1,0 +1,83 @@
+JavaScript เป็นภาษาที่ รองรับ Functional Programming หรือการเขียนโปรแกรมเชิงฟังก์ชัน ซึ่งเน้นการใช้ฟังก์ชันเป็นหลักและลดการเปลี่ยนแปลงข้อมูล (state) เพื่อให้โค้ดมีความคาดเดาได้ง่ายและปลอดภัยจากผลกระทบข้างเคียง (side effect)
+
+Paradigm ของการเขียนโปรแกรม:
+-Imperative Programming: การสั่งให้คอมพิวเตอร์ทำตามขั้นตอนทีละขั้น (How)
+-Declarative Programming: บอกว่าต้องการผลลัพธ์อะไรโดยไม่ต้องระบุขั้นตอนทั้งหมด (What)
+
+
+Callback Function และ Higher-Order Function
+-Callback Function คือฟังก์ชันที่ถูกส่งไปเป็นอาร์กิวเมนต์ให้ฟังก์ชันอื่น แล้วจะถูกเรียกกลับ (call back) เมื่อถึงเวลาที่เหมาะสม เช่น หลังเสร็จงาน หรือเมื่อมี event เกิดขึ้น
+-Higher-Order Function (HOF) คือฟังก์ชันที่ รับฟังก์ชันเป็น parameter หรือ return ฟังก์ชันกลับ เช่น map, filter, reduce
+
+Functional Programming หลักการสำคัญ
+
+1.Function เป็น First-Class Citizen
+-สามารถมอบค่าให้ตัวแปรได้
+-ส่งฟังก์ชันเป็น parameter ได้ (Callback Function)
+
+2.หลีกเลี่ยงการเปลี่ยน state หรือ mutable data
+-ออกแบบฟังก์ชันให้ไม่เปลี่ยนข้อมูลต้นฉบับเพื่อลด side effect
+
+Pure Function:
+-Input เดียวกันต้องได้ Output เดิมเสมอฃ
+-ไม่แตะตัวแปรภายนอก scope ของตัวเอง
+
+Pure function คงค่าต้นฉบับไว้ ไม่เปลี่ยน state ภายนอก ส่วน impure function จะเปลี่ยนค่า object ทำให้ผลลัพธ์ครั้งต่อไปไม่เหมือนเดิม
+
+Function Composition
+คือการรวมหลาย ๆ ฟังก์ชันเข้าด้วยกันเพื่อสร้างฟังก์ชันใหม่
+
+Function Types
+-Anonymous Function: ไม่มีชื่อ
+-Named Function: มีชื่อ
+-Nested (Inner) Function: ฟังก์ชันซ้อนภายในฟังก์ชันอื่น ใช้ได้เฉพาะใน scope ของ -outer function
+-Closure Function: nested function ที่จำค่าของตัวแปรจาก scope ภายนอกได้
+
+Document Object Model (DOM)
+
+DOM คือ โครงสร้างต้นไม้ของเอกสาร HTML ที่ JavaScript ใช้จัดการหน้าเว็บ
+
+Node Types:
+-Element Node: เช่น <div>
+-Text Node: ข้อความภายใน element
+-Attribute Node: เช่น id, style
+-Comment Node: <!-- comment -->
+
+ความสัมพันธ์ของ Node: parent / child / sibling / ancestor / descendant
+
+DOM Traversal:
+ใช้ property เช่น parentElement, children, firstElementChild, nextElementSibling เพื่อเดินทางระหว่าง node
+
+
+Event และ DOM
+Event คือ สิ่งที่เกิดขึ้นบนหน้าเว็บ เช่น คลิกเมาส์, พิมพ์คีย์บอร์ด, โหลดหน้าเสร็จ
+
+Event Propagation มี 3 ขั้นตอน:
+-Capturing Phase – ไหลจาก root → จุดเกิดเหตุ
+-Target Phase – ถึง node ที่เกิด event
+-Bubbling Phase – ไหลย้อนกลับไป root
+
+Observer Pattern:
+-Event handling คล้าย observer pattern
+-Publisher ส่งสัญญาณ, Subscriber ตอบสนองเมื่อเกิด event
+
+การเก็บข้อมูลฝั่ง Client
+เพื่อให้เว็บไซต์จดจำผู้ใช้และตั้งค่าต่าง ๆเช่น ข้อมูลการ login, theme, สินค้าในตะกร้า
+
+Token:
+Access Token: ใช้ครั้งสั้น ๆ
+Refresh Token: ใช้ต่ออายุ Access Token
+
+Cookies:
+-เก็บข้อมูลขนาด ≤ 4 KB
+-ใช้จัดการ login และ track behavior
+-มี first-party / third-party
+-ข้อควรระวัง: ต้องตั้ง HttpOnly / Secure เพื่อป้องกัน XSS
+
+Local Storage:
+-เก็บข้อมูลถาวรที่ไม่ส่งไป server
+-ข้อควรระวัง: ไม่เก็บข้อมูลสำคัญ เช่น password
+
+Session Storage:
+-เก็บข้อมูลชั่วคราว (เช่น แท็บปัจจุบัน)
+-ข้อมูลจะหายเมื่อปิดแท็บ
